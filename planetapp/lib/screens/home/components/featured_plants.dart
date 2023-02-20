@@ -1,0 +1,58 @@
+import 'package:flutter/cupertino.dart';
+
+import '../../../consts.dart';
+
+class FeaturedPlants extends StatelessWidget {
+  const FeaturedPlants({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          FeaturedPlantsCard(
+            img: 'assets/images/bottom_img_1.png',
+            press: () {},
+          ),
+          FeaturedPlantsCard(
+            img: 'assets/images/bottom_img_2.png',
+            press: () {},
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FeaturedPlantsCard extends StatelessWidget {
+  const FeaturedPlantsCard({Key? key, required this.img, required this.press})
+      : super(key: key);
+  final String img;
+  final VoidCallback press;
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return GestureDetector(
+      onTap: press,
+      child: Container(
+        margin: EdgeInsets.only(
+            left: kDefaultPadding,
+            top: kDefaultPadding / 2,
+            bottom: kDefaultPadding / 2),
+        width: size.width * 0.8,
+        height: 185,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage(img),
+          ),
+        ),
+      ),
+    );
+  }
+}
